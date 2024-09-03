@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserve a Table - Food Haven</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #519fe4;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .reservation-form {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .reservation-form h2 {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 100px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #f77b55;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #555;
+        }
+
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            margin-top: 20px;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .reservation-details {
+            margin-top: 20px;
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .reservation-details p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Reserve Your Table at Food Haven</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="reservation-form">
+            <h2>Reservation Details</h2>
+            <form id="reservationForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Time</label>
+                    <input type="time" id="time" name="time" required>
+                </div>
+                <div class="form-group">
+                    <label for="guests">Number of Guests</label>
+                    <select id="guests" name="guests" required>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8+</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="requests">Special Requests</label>
+                    <textarea id="requests" name="requests" placeholder="Any specific preferences or requests?"></textarea>
+                </div>
+                <button type="submit" class="btn">Submit Reservation</button>
+            </form>
+            <div class="success-message" id="successMessage">
+                Your reservation has been successfully made!
+            </div>
+            <div class="reservation-details" id="reservationDetails">
+                <h3>Your Reservation Details:</h3>
+                <p><strong>Name:</strong> <span id="displayName"></span></p>
+                <p><strong>Email:</strong> <span id="displayEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+                <p><strong>Date:</strong> <span id="displayDate"></span></p>
+                <p><strong>Time:</strong> <span id="displayTime"></span></p>
+                <p><strong>Guests:</strong> <span id="displayGuests"></span></p>
+                <p><strong>Special Requests:</strong> <span id="displayRequests"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('reservationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Display the success message
+            document.getElementById('successMessage').style.display = 'block';
+
+            // Display the reservation details
+            document.getElementById('displayName').textContent = document.getElementById('name').value;
+            document.getElementById('displayEmail').textContent = document.getElementById('email').value;
+            document.getElementById('displayPhone').textContent = document.getElementById('phone').value;
+            document.getElementById('displayDate').textContent = document.getElementById('date').value;
+            document.getElementById('displayTime').textContent = document.getElementById('time').value;
+            document.getElementById('displayGuests').textContent = document.getElementById('guests').value;
+            document.getElementById('displayRequests').textContent = document.getElementById('requests').value;
+
+            // Show the reservation details section
+            document.getElementById('reservationDetails').style.display = 'block';
+            
+            // Optionally, reset the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
